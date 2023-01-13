@@ -82,7 +82,11 @@ fi
 
 # get running machine from conf file
 if [ -r /etc/machine.conf ]; then
-    read_conf_file "/etc/machine.conf"
+    if [ -r /etc/machine-build.conf ]; then
+        . /etc/machine.conf
+    else
+        read_conf_file "/etc/machine.conf"
+    fi
 elif [ -r /host/machine.conf ]; then
     read_conf_file "/host/machine.conf"
 elif [ "$install_env" != "build" ]; then
@@ -94,7 +98,11 @@ fi
 echo "onie_platform: $onie_platform"
 
 # Get platform specific linux kernel command line arguments
-ONIE_PLATFORM_EXTRA_CMDLINE_LINUX=""
+if [ "$onie_platform" = "x86_64-quanta_ix8_dnv-r0" ] || [ "$onie_platform" = "x86_64-quanta_ix7_dnv-r0" ]; then
+    ONIE_PLATFORM_EXTRA_CMDLINE_LINUX="acpi_osi=Linux irqpoll"
+else
+    ONIE_PLATFORM_EXTRA_CMDLINE_LINUX=""
+fi
 
 # Default var/log device size in MB
 VAR_LOG_SIZE=4096
