@@ -46,3 +46,10 @@ sonic-quanta-platform-modules (1.0) unstable; urgency=low
   * Initial release
 
  -- Robert Hong <robert.hong@qct.io> Tue, 2 Mar 2021 15:20:01 +0800
+
+sonic-quanta-platform-modules (1.0) unstable; urgency=low
+
+  * Add support for Quanta IX8D-56X
+  * Initial release
+
+ -- Robert Hong <robert.hong@qct.io> Thur, 5 Jan 2023 15:20:01 +0800
